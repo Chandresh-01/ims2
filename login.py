@@ -1,9 +1,8 @@
-import email
 from tkinter import*
 from PIL import ImageTk 
 from tkinter import messagebox
 import sqlite3
-import os
+import subprocess
 import email_pass
 import smtplib
 import time
@@ -11,7 +10,7 @@ class Login:
     def __init__(self,root):
         self.root=root 
         self.root.title("Login System | Developed by AJ & CJ")
-        self.root.geometry("1350x700+0+0")
+        self.root.geometry("1520x770+0+10")
         self.root.config(bg="#fafafa")
         self.otp=''
     #imagessss
@@ -42,36 +41,38 @@ class Login:
         self.im2=ImageTk.PhotoImage(file="image/im2.png")
         self.im3=ImageTk.PhotoImage(file="image/im3.png")
 
-        self.lbl_change_images=Label(self.root,bg="white")
-        self.lbl_change_images.place(x=367,y=153,width=240,height=428)
+        self.lbl_change_image=Label(self.root,bg="white")
+        self.lbl_change_image.place(x=367,y=153,width=240,height=428)
         self.ani()
-        
+                
     def ani(self):
         self.im=self.im1
         self.im1=self.im2
         self.im2=self.im3
         self.im3=self.im
-        self.lbl_change_images.config(image=self.im)
-        self.lbl_change_images.after(2000,self.ani)
+        self.lbl_change_image.config(image=self.im)
+        self.lbl_change_image.after(2000,self.ani)
+
+
     def login(self):
-        con=sqlite3.connect(database=r'ims.db')
-        cur=con.cursor()
+        con = sqlite3.connect(database=r'ims.db')
+        cur = con.cursor()
         try:
-            if self.employee_id.get()=="" or self.password.get()=="":
-                messagebox.showerror("Error!","All fields are required",parent=self.root)
+            if self.employee_id.get() == "" or self.password.get() == "":
+                messagebox.showerror("Error!", "All fields are required", parent=self.root)
             else:
-                cur.execute("select Utype from employee where Empid=? AND pass=?",(self.employee_id.get(),self.password.get()))
-                user=cur.fetchone()
-                if user==None:
-                    messagebox.showerror("Error!","Invalid Username/Password",parent=self.root)
+                cur.execute("select Utype from employee where Empid=? AND pass=?", (self.employee_id.get(), self.password.get()))
+                user = cur.fetchone()
+                if user == None:
+                    messagebox.showerror("Error!", "Invalid Username/Password", parent=self.root)
                 else:
-                    if user[0]=="Admin":
+                    if user[0] == "Admin":
                         self.root.destroy()
-                        os.system("python DashBoard.py")
+                        subprocess.run(['pythonw', 'DashBoard.py'])  # Use subprocess.run with pythonw
                     else:
                         self.root.destroy()
-                        os.system("python category.py")
-                        
+                        subprocess.run(['pythonw', 'billing.py'])  # Use subprocess.run with pythonw
+
         except Exception as ex:
             messagebox.showerror("Error!",f"Error due to: {str(ex)}",parent=self.root)
     def forget_pass(self):
@@ -92,7 +93,7 @@ class Login:
                     self.var_conf_pass=StringVar()
                     #call send email function
                     chk=self.email_send(Email[0])
-                    if chk!="s":
+                    if chk=='f':
                         messagebox.showerror("Error","Connection Lost,Try Again",parent=self.root)
                     else:
                         
@@ -114,7 +115,7 @@ class Login:
                         conf_pass=Label(self.forget_pass,text='Confirm Password',font=('times new roman',15)).place(x=24,y=215)
                         txt_conf_pass=Entry(self.forget_pass,textvariable=self.var_conf_pass,font=("times new roman",15),bg="lightyellow").place(x=24,y=255,width=250,height=30)
 
-                        self.btn_new_pass=Button(self.forget_pass,text="UPDATE",command=self.update(),state=DISABLED,font=("times new roman",15),bg="lightblue")
+                        self.btn_new_pass=Button(self.forget_pass,text="UPDATE",command=self.update,state=DISABLED,font=("times new roman",15),bg="lightblue")
                         self.btn_new_pass.place(x=150,y=300,width=100,height=30)
                     
         except Exception as ex:
@@ -134,9 +135,9 @@ class Login:
         sm.sendmail(email_,to_,msg)
         chk=sm.ehlo()
         if chk[0]==250:
-            return "sucess"
+            return "s"
         else:
-            return "failed"
+            return "f"
         
     def validate(self):
         if int(self.otp)==int(self.var_otp.get()):
@@ -144,11 +145,11 @@ class Login:
             self.btn_reset.config(state=DISABLED)
         else:
             messagebox.showerror("Error!","Invalid OTP!",parent=self.forget_pass)
-    
+
     def update(self):
         if self.var_new_pass.get()=="" or self.var_conf_pass.get()=="":
             messagebox.showerror("Error!","Password is required.",parent=self.forget_pass)
-        elif self.var_new_pass.get()!="" or self.var_conf_pass.get():
+        elif self.var_new_pass.get()!= self.var_conf_pass.get():
             messagebox.showerror("Error!","The New & Confirm password should be same.",parent=self.forget_pass)
         else:
             con=sqlite3.connect(database='ims.db')
@@ -167,6 +168,6 @@ obj=Login(root)
 root.mainloop()
 
 #get this function added once the billing dash is ready        
-    #def logout(self):
+    # def logout(self):
     #    self.root.destroy()
     #    os.system("python login.py")

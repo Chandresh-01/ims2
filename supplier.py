@@ -7,7 +7,7 @@ import sqlite3
 class SupplierClass:
     def __init__(self, root):
         self.root = root
-        self.root.geometry("1100x500+220+130")
+        self.root.geometry("1310x630+212+110")
         self.root.title("Supplier Management")
         self.root.config(bg="white")
         self.root.focus_force()
@@ -37,7 +37,7 @@ class SupplierClass:
 
         # Supplier Details (Row 1)
         lbl_supplier_invoice = Label(self.root, text="Invoice No.", font=("goudy old style", 15), bg="white").place(x=50, y=80)
-        txt_supplier_invoice = Entry(self.root, textvariable=self.var_sup_invoice, font=("goudy old style", 15), bg="lightyellow").place(x=180, y=80, width=180)
+        txt_supplier_invoice = Entry(self.root, textvariable=self.var_sup_invoice, font=("goudy old style", 15), bg="lightyellow").place(x=180, y=80, width=280)
 
         # Supplier Details (Row 2)
         lbl_name = Label(self.root, text="Name", font=("goudy old style", 15), bg="white").place(x=50, y=120)
@@ -60,7 +60,7 @@ class SupplierClass:
 
         # Frame for showing supplier details
         emp_frame = Frame(self.root, bd=4, relief=RIDGE)
-        emp_frame.place(x=700, y=120, width=380, height=350)
+        emp_frame.place(x=700, y=120, width=580, height=450)
 
         # Scrollbars for Treeview
         scrollx = Scrollbar(emp_frame, orient=HORIZONTAL)

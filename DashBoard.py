@@ -1,4 +1,3 @@
-import tkinter as tk
 from tkinter import *
 from PIL import Image, ImageTk  # from Pillow
 from emplyoee import employeeClass
@@ -7,9 +6,9 @@ from supplier import SupplierClass
 from product import productClass
 from sales import salesClass
 import os
+import subprocess
 import sqlite3
 from tkinter import messagebox
-import time
 from time import strftime
 
 
@@ -42,7 +41,7 @@ class IMS:
         
         #====left menu====
         self.MenuLogo = Image.open("image/logo2.jpg")
-        self.MenuLogo = self.MenuLogo.resize((200, 200), Image.LANCZOS)
+        self.MenuLogo = self.MenuLogo.resize((200, 250), Image.LANCZOS)
         self.MenuLogo = ImageTk.PhotoImage(self.MenuLogo)
         
         LeftMenu = Frame(self.root, bd=2, relief=RIDGE, bg="white")
@@ -152,10 +151,10 @@ class IMS:
             
         except Exception as ex:
             messagebox.showerror("Error", f"Error due to {str(ex)}", parent=self.root)
-    
+
     def logout(self):
-       self.root.destroy()
-       os.system("python login.py")
+        self.root.destroy()
+        subprocess.run(['pythonw', 'login.py'])  # Use subprocess.run with pythonw
 
 if __name__ == "__main__":
     root = Tk()

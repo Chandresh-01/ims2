@@ -72,11 +72,11 @@ class productClass:
         
         
         # Search Frame
-        SearchFrame = LabelFrame(self.root, text="Search Employee", bg="white", font=("goudy old style", 15, "bold"), bd=2, relief=RIDGE )
+        SearchFrame = LabelFrame(self.root, text="Search Product", bg="white", font=("goudy old style", 15, "bold"), bd=2, relief=RIDGE )
         SearchFrame.place(x=560, y=10, width=720, height=80) 
 
         # Option
-        cmb_search = ttk.Combobox(SearchFrame, textvariable=self.var_searchby, values=("Select", "Catagory", "Supplier", "Name"), state="readonly", justify=CENTER, font=("goudy old style", 18))
+        cmb_search = ttk.Combobox(SearchFrame, textvariable=self.var_searchby, values=("Select", "Category", "Supplier", "Name"), state="readonly", justify=CENTER, font=("goudy old style", 18))
         cmb_search.place(x=10, y=6, width=250)
         cmb_search.current(0)
 

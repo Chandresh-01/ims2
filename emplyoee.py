@@ -6,7 +6,7 @@ import sqlite3
 class employeeClass:
     def __init__(self, root):  
         self.root = root
-        self.root.geometry("1100x500+220+130")
+        self.root.geometry("1310x630+212+110")
         self.root.title("EMPLOYEE_DATA_STORATION")
         self.root.config(bg="white")
         self.root.focus_force()
@@ -42,59 +42,61 @@ class employeeClass:
         btn_search = Button(SearchFrame, text="Search",command=self.search, font=("goudy old style", 15), bg="#4caf50", fg="white").place(x=420, y=5, width=150, height=30)
 
         # Title
-        title = Label(self.root, text="Employee Details", font=("goudy old style", 15), bg="#0f4d7d", fg="white").place(x=50, y=110, width=1000)
+        title = Label(self.root, text="Employee Details", font=("goudy old style", 18), bg="#0f4d7d", fg="white").place(x=30, y=105, width=1250)
         
 
         # Content that would be shown in the employee details (row 1)
-        lbl_empid = Label(self.root, text="Emp ID", font=("goudy old style", 15), bg="white").place(x=50, y=150)
+        lbl_empid = Label(self.root, text="Emp ID", font=("goudy old style", 15), bg="white").place(x=30, y=150)
         
         
-        lbl_gender = Label(self.root, text="Gender", font=("goudy old style", 15), bg="white").place(x=350, y=150)
-        lbl_contact = Label(self.root, text="Contact", font=("goudy old style", 15), bg="white").place(x=700, y=150)
+        lbl_gender = Label(self.root, text="Gender", font=("goudy old style", 15), bg="white").place(x=410, y=150)
+        lbl_contact = Label(self.root, text="Contact", font=("goudy old style", 15), bg="white").place(x=760, y=150)
 
-        txt_empid = Entry(self.root, textvariable=self.var_emp_id, font=("goudy old style", 15), bg="lightyellow").place(x=160, y=150, width=180)
+        txt_empid = Entry(self.root, textvariable=self.var_emp_id, font=("goudy old style", 15), bg="lightyellow").place(x=140, y=150, width=210)
         cmb_gender = ttk.Combobox(self.root, textvariable=self.var_gender, values=("Select", "Male", "Female", "Other"), state="readonly", justify=CENTER, font=("goudy old style", 15))
-        cmb_gender.place(x=455, y=150, width=180)
+        cmb_gender.place(x=515, y=150, width=210)
         cmb_gender.current(0)
-        txt_contact = Entry(self.root, textvariable=self.var_contact, font=("goudy old style", 15), bg="lightyellow").place(x=812, y=150, width=180)
+        txt_contact = Entry(self.root, textvariable=self.var_contact, font=("goudy old style", 15), bg="lightyellow").place(x=872, y=150, width=210)
 
         # Content that would be shown in the employee details (row 2)
-        lbl_name = Label(self.root, text="Name", font=("goudy old style", 15), bg="white").place(x=50, y=190)
-        lbl_dob = Label(self.root, text="DOB", font=("goudy old style", 15), bg="white").place(x=350, y=190)
-        lbl_doj = Label(self.root, text="DOJ", font=("goudy old style", 15), bg="white").place(x=700, y=190)
+        lbl_name = Label(self.root, text="Name", font=("goudy old style", 15), bg="white").place(x=30, y=190)
+        lbl_dob = Label(self.root, text="DOB", font=("goudy old style", 15), bg="white").place(x=410, y=190)
+        lbl_doj = Label(self.root, text="DOJ", font=("goudy old style", 15), bg="white").place(x=760, y=190)
 
-        txt_name = Entry(self.root, textvariable=self.var_name, font=("goudy old style", 15), bg="lightyellow").place(x=160, y=190, width=180)
-        txt_dob = Entry(self.root, textvariable=self.var_dob, font=("goudy old style", 15), bg="lightyellow").place(x=455, y=190, width=180)
-        txt_doj = Entry(self.root, textvariable=self.var_doj, font=("goudy old style", 15), bg="lightyellow").place(x=812, y=190, width=180)
+        txt_name = Entry(self.root, textvariable=self.var_name, font=("goudy old style", 15), bg="lightyellow").place(x=140, y=190, width=210)
+        txt_dob = Entry(self.root, textvariable=self.var_dob, font=("goudy old style", 15), bg="lightyellow").place(x=515, y=190, width=210)
+        txt_doj = Entry(self.root, textvariable=self.var_doj, font=("goudy old style", 15), bg="lightyellow").place(x=872, y=190, width=210)
 
         # Content that would be shown in the employee details (row 3)
-        lbl_email = Label(self.root, text="Email", font=("goudy old style", 15), bg="white").place(x=50, y=230)
-        lbl_pass = Label(self.root, text="Password", font=("goudy old style", 15), bg="white").place(x=350, y=230)
-        lbl_utype = Label(self.root, text="User Type", font=("goudy old style", 15), bg="white").place(x=700, y=230)
+        lbl_email = Label(self.root, text="Email", font=("goudy old style", 15), bg="white").place(x=30, y=230)
+        lbl_pass = Label(self.root, text="Password", font=("goudy old style", 15), bg="white").place(x=410, y=230)
+        lbl_utype = Label(self.root, text="User Type", font=("goudy old style", 15), bg="white").place(x=760, y=230)
 
-        txt_email = Entry(self.root, textvariable=self.var_email, font=("goudy old style", 15), bg="lightyellow").place(x=160, y=230, width=180)
-        txt_pass = Entry(self.root, textvariable=self.var_pass, font=("goudy old style", 15), bg="lightyellow").place(x=455, y=230, width=180)
+        txt_email = Entry(self.root, textvariable=self.var_email, font=("goudy old style", 15), bg="lightyellow").place(x=140, y=230, width=210)
+        txt_pass = Entry(self.root, textvariable=self.var_pass, font=("goudy old style", 15), bg="lightyellow").place(x=515, y=230, width=210)
         cmb_utype = ttk.Combobox(self.root, textvariable=self.var_utype, values=("Select", "Admin", "Employee"), state="readonly", justify=CENTER, font=("goudy old style", 15))
-        cmb_utype.place(x=812, y=230, width=180)
+        cmb_utype.place(x=872, y=230, width=210)
         cmb_utype.current(0)
 
         # Content that would be shown in the employee details (row 4)
-        lbl_address = Label(self.root, text="Address", font=("goudy old style", 15), bg="white").place(x=50, y=270)
-        lbl_salary = Label(self.root, text="Salary", font=("goudy old style", 15), bg="white").place(x=700, y=270)
+        lbl_address = Label(self.root, text="Address", font=("goudy old style", 15), bg="white").place(x=30, y=270)
+        lbl_salary = Label(self.root, text="Salary", font=("goudy old style", 15), bg="white").place(x=760, y=270)
 
         self.txt_address = Text(self.root, font=("goudy old style", 15), bg="lightyellow")
-        self.txt_address.place(x=160, y=270, width=300, height=60)
-        txt_salary = Entry(self.root, textvariable=self.var_salary, font=("goudy old style", 15), bg="lightyellow").place(x=812, y=270, width=180)
+        self.txt_address.place(x=140, y=270, width=330, height=60)
+        txt_salary = Entry(self.root, textvariable=self.var_salary, font=("goudy old style", 15), bg="lightyellow").place(x=872, y=270, width=210)
 
         # Buttons (Save, Update, Delete)
         btn_save = Button(self.root, text="Save", command=self.add, font=("goudy old style", 15), bg="#2196f3", fg="white").place(x=500, y=305, width=120, height=28)
         btn_update = Button(self.root, text="Update",command=self.update, font=("goudy old style", 15), bg="#4caf50", fg="white").place(x=630, y=305, width=120, height=28)
         btn_delete = Button(self.root, text="Delete",command=self.delete, font=("goudy old style", 15), bg="#f44336", fg="white").place(x=760, y=305, width=120, height=28)
         btn_clear = Button(self.root, text="Clear",command=self.clear, font=("goudy old style", 15), bg="#607d8b", fg="white").place(x=890, y=305, width=120, height=28)
-
+        
+       ##Employee Details==
+       
         # Frame for seeing employee details as spreadsheets
         emp_frame = Frame(self.root, bd=4, relief=RIDGE)
-        emp_frame.place(x=0, y=350, relwidth=1, height=150)
+        emp_frame.place(x=0, y=350, relwidth=1, height=275)
 
         # To scroll data if it is too vast or big
         scrollX = Scrollbar(emp_frame, orient=HORIZONTAL)
@@ -121,14 +123,14 @@ class employeeClass:
         self.EmployeeTable["show"] = "headings"
         self.EmployeeTable.column("Empid", width=90)
         self.EmployeeTable.column("Name", width=100)
-        self.EmployeeTable.column("Email", width=100)
-        self.EmployeeTable.column("Gender", width=100)
+        self.EmployeeTable.column("Email", width=200)
+        self.EmployeeTable.column("Gender", width=90)
         self.EmployeeTable.column("Contact", width=100)
         self.EmployeeTable.column("DOB", width=100)
         self.EmployeeTable.column("DOJ", width=100)
         self.EmployeeTable.column("Pass", width=100)
         self.EmployeeTable.column("Utype", width=100)
-        self.EmployeeTable.column("Address", width=100,)
+        self.EmployeeTable.column("Address", width=150,)
         self.EmployeeTable.column("Salary", width=100)
         self.EmployeeTable.pack(fill=BOTH, expand=1)
         self.EmployeeTable.bind("<ButtonRelease-1>", self.get_data)  
@@ -297,7 +299,7 @@ class employeeClass:
             con.close()
             
 
-if __name__ == "_main_":  
+if __name__ == "__main__":  
     root = Tk()
     obj = employeeClass(root)
     root.mainloop()

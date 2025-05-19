@@ -5,7 +5,8 @@ import sqlite3
 class categoryClass:
     def __init__(self, root):  # Fixed the constructor method name
         self.root = root
-        self.root.geometry("1100x500+220+130")
+        self.root.geometry("1310x630+212+110")
+        # self.root.geometry("1100x500+220+130")
         self.root.title("Inventory Management System | Developed By Aj & Cj")
         self.root.config(bg="white")
         self.root.focus_force()
@@ -31,7 +32,7 @@ class categoryClass:
         #=====Category Details=====
         
         cat_frame = Frame(self.root, bd=4, relief=RIDGE)
-        cat_frame.place(x=700, y=100, width=380, height=100)
+        cat_frame.place(x=700, y=130, width=541, height=396)
         
         scrollX = Scrollbar(cat_frame, orient=HORIZONTAL)
         scrollY = Scrollbar(cat_frame, orient=VERTICAL)
@@ -54,20 +55,36 @@ class categoryClass:
         
         
         #==images===
-        self.im1=Image.open("images/cat.jpg")
-        self.im1=self.im1.resize((500,250),Image.LANCZOS)
-        self.im1=ImageTk.PhotoImage(self.im1)
+        self.im1=ImageTk.PhotoImage(file="image/cat.jpg")
+        self.im2=ImageTk.PhotoImage(file="image/category.jpg")
+        # self.im1=self.im1.resize((580,300),Image.LANCZOS)
+        # self.im2=self.im2.resize((580,300),Image.LANCZOS)
+
+        self.lbl_change_image=Label(self.root,image=self.im1,bd=2, relief=RAISED)
+        self.lbl_change_image.place(x=50,y=220,width=620,height=300)
+        self.ani()
+                
+    def ani(self):
+        self.im=self.im1
+        self.im1=self.im2
+        self.im2=self.im
+        self.lbl_change_image.config(image=self.im)
+        self.lbl_change_image.after(2000,self.ani)
+
+        # self.im1=Image.open("image/cat.jpg")
+        # self.im1=self.im1.resize((580,300),Image.LANCZOS)
+        # self.im1=ImageTk.PhotoImage(self.im1)
         
-        self.lbl_im1=Label(self.root,image=self.im1, bd=2, relief=RAISED)
-        self.lbl_im1.place(x=50, y=220)
+        # self.lbl_im1=Label(self.root,image=self.im1, bd=2, relief=RAISED)
+        # self.lbl_im1.place(x=50, y=220)
         
         
-        self.im2=Image.open("images/category.jpg")
-        self.im2=self.im2.resize((500,250),Image.LANCZOS)
-        self.im2=ImageTk.PhotoImage(self.im2)
+        # self.im2=Image.open("image/category.jpg")
+        # self.im2=self.im2.resize((580,300),Image.LANCZOS)
+        # self.im2=ImageTk.PhotoImage(self.im2)
         
-        self.lbl_im2=Label(self.root,image=self.im2, bd=2, relief=RAISED)
-        self.lbl_im2.place(x=580, y=220)
+        # self.lbl_im2=Label(self.root,image=self.im2, bd=2, relief=RAISED)
+        # self.lbl_im2.place(x=660, y=220)
         
         self.show()
         
@@ -139,9 +156,10 @@ class categoryClass:
             messagebox.showerror("Error", f"Error due to: {str(ex)}", parent=self.root)
         finally:
             con.close()
+            
            
         
 if __name__ == "__main__":
     root = Tk()
     obj = categoryClass(root)
-    root.mainloop()
+    root.mainloop()       

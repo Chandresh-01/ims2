@@ -1,9 +1,9 @@
-import tkinter as tk
 from tkinter import *
 from PIL import Image, ImageTk  # from Pillow
 from tkinter import ttk, messagebox
 import sqlite3
 import os
+import subprocess
 import time
 import tempfile
 
@@ -543,8 +543,9 @@ class BillClass:
             os.startfile(new_file, 'print') 
             
     def logout(self):
-       self.root.destroy()
-       os.system("python login.py")       
+        self.root.destroy()
+        subprocess.run(['pythonw', 'login.py']) 
+     
            
             
             
